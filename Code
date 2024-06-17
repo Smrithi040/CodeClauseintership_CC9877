@@ -1,0 +1,54 @@
+tasks = []
+def add_task():
+    task = input("Enter the task: ")
+    tasks.append(task)
+    print(f"Added task: {task}")
+
+def complete_task():
+    display_tasks()
+    task_number = int(input("Enter the task number to complete: ")) - 1
+    if 0 <= task_number < len(tasks):
+        tasks[task_number] += " (completed)"
+        print(f"Marked task {task_number + 1} as completed")
+    else:
+        print(f"Invalid task number: {task_number + 1}")
+
+def remove_completed_tasks():
+    global tasks
+    tasks = [task for task in tasks if "(completed)" not in task]
+    print("Removed completed tasks")
+
+def display_tasks():
+    if not tasks:
+        print("No tasks in the list.")
+    else:
+        for idx, task in enumerate(tasks, 1):
+            print(f"{idx}. {task}")
+
+def main():
+    while True:
+        print("\nOptions:")
+        print("1. Add task")
+        print("2. Complete task")
+        print("3. Remove completed tasks")
+        print("4. Display tasks")
+        print("5. Quit")
+
+        choice = input("Choose an option: ")
+
+        if choice == '1':
+            add_task()
+        elif choice == '2':
+            complete_task()
+        elif choice == '3':
+            remove_completed_tasks()
+        elif choice == '4':
+            display_tasks()
+        elif choice == '5':
+            print("Quitting the application. Goodbye!")
+            break
+        else:
+            print("Invalid choice.")
+
+if __name__ == "__main__":
+    main()
